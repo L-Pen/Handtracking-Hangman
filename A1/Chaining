@@ -49,7 +49,7 @@ public class Chaining {
 
         //what should the seed value be?
         int finalInt = 0;
-        this.A = generateRandom(this.w-1, this.w, 1000);
+        this.A = generateRandom(this.w-1, this.w, 0);
         int aMulK = this.A * key;
         int moddedValue = aMulK % power2(this.w);
         int shiftedValue = moddedValue >> (this.w - this.r);
@@ -63,13 +63,9 @@ public class Chaining {
     public int insertKey(int key){
         //TODO: implement this and change the return statement
         int collision = 0;     
-        //check whether subarray at index exists
-        if ((this.Table.get(key)).size() == 0){ // check whether the len of the array inside is 1 if not insert node
-            this.Table.get(key).add(key);
-        }else{
-            collision = (this.Table.get(key)).size();
-            this.Table.get(key).add(0,key);
-        }
+        index = chain(key);
+        collision = (this.Table.get(index)).size();
+        this.Table.get(index).add(0,key);
 
         return collision;
 
