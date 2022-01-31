@@ -60,13 +60,27 @@ public class DisjointSets {
         } else {
             this.par[i] = find(this.par[i]);
             return this.par[i];
-        }
-        
+        }   
     }
 
     /* merge sets containing elements i and j */
     public int union(int i, int j) {
         /* Fill this method (The statement return 0 is here only to compile) */
+        //if i!=j
+        if find(i) != find(j){
+            //computer union
+            if (rank(i) - rank(f) < 0){
+            
+            }else{
+                
+            }
+        }else{
+            //merge i in to j
+        }
+        
+        //if i == j
+        
+        
         return 0;
         
     }
