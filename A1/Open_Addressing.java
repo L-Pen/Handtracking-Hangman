@@ -42,7 +42,7 @@ public class Open_Addressing {
         public int probe(int key, int i) {
             //TODO: implement this function and change the return statement.
 
-            this.A = generateRandom(this.w-1, this.w, 1000);
+            this.A = generateRandom(this.w-1, this.w, 0);
             int aMulK = this.A * key;
             int moddedValue = aMulK % power2(this.w);
             int shiftedValue = moddedValue >> (this.w - this.r); //h(x) computed
@@ -56,10 +56,16 @@ public class Open_Addressing {
      /**Inserts key k into hash table. Returns the number of collisions encountered*/
         public int insertKey(int key){
             //TODO : implement this and change the return statement.
-            if (){
-                    
-            }
-            return -1;  
+            int g = 0;
+            for (int i = 0; i <= this.Table.size(); i++){
+                 int index = probe(key,i);                 
+                 if (this.Table[index] != -1){
+                    g++;
+                 } else{
+                    this.Table[index] = key;
+                    break;
+                 }
+            return g;  
         }
         
         /**Sequentially inserts a list of keys into the HashTable. Outputs total number of collisions */
@@ -74,7 +80,16 @@ public class Open_Addressing {
          /**Inserts key k into hash table. Returns the number of collisions encountered*/
         public int removeKey(int key){
             //TODO: implement this and change the return statement
-                
-            return -1;
+            int g = 0;
+            for (int i = 0; i <= this.Table.length; i++){
+                 int index = probe(key,i);                 
+                 if (this.Table[index] != key){
+                    if (i == this.Table.length) {break}
+                    g++;
+                 } else{
+                    this.Table[index] = -1;
+                    break;
+                 }
+            return g; 
         }
 }
