@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-
-
 public class A1_Q3 {
 	
 	public static ArrayList<String> strToAL(String[] input){
@@ -19,15 +17,15 @@ public class A1_Q3 {
 
 		for(int i = 0; i < wordArray.size(); i++){
 			// System.out.println("i: " + wordArray.get(i));
-			for(int j = i+1; j < wordArray.size(); j++){
+			for(int j = i; j < wordArray.size(); j++){
 				if(intArray.get(i) < intArray.get(j)){
 					// System.out.println("hit simple case" + wordArray.get(i) + " "+ wordArray.get(j));
 					Collections.swap(intArray,j,i);
 					Collections.swap(wordArray,j,i);
 
 				}
-				else if(intArray.get(i) == intArray.get(j)){
-					if(wordArray.get(i).compareTo(wordArray.get(j)) > 0){
+				else if(intArray.get(i).equals(intArray.get(j))){
+					if(wordArray.get(i).compareTo(wordArray.get(j)) >=0){
 
 						//System.out.println("hit apha case" + wordArray.get(i) + " " + wordArray.get(j));
 						Collections.swap(intArray,j,i);
@@ -77,28 +75,39 @@ public class A1_Q3 {
 		}
 
 
-		for(String word:wordCountHashmap.keySet()){
-			boolean found = false;
-			if(wordCountHashmap.get(word) >= nameHashmap.keySet().size()){
+		// for(String word:wordCountHashmap.keySet()){
+		// 	boolean found = false;
+		// 	if(wordCountHashmap.get(word) >= nameHashmap.keySet().size()){
 
-				for(String name: nameHashmap.keySet()){
-					if(nameHashmap.get(name).contains(word)){
-						found = true;
-					}
-					else{
-						found = false;
-					}
-				}
+		// 		for(String name: nameHashmap.keySet()){
+		// 			if(nameHashmap.get(name).contains(word)){
+		// 				found = true;
+		// 			}
+		// 			else{
+		// 				found = false;
+		// 			}
+		// 		}
 
-				if(found){
-					result.add(word);
-				}
-			}
-			else{
-				continue;
-			}
-		}
-		
+		// 		if(found){
+		// 			result.add(word);
+		// 		}
+		// 	}
+		// 	else{
+		// 		continue;
+		// 	}
+		// }
+        for(String word: wordCountHashmap.keySet()){
+            int i = 0;
+            for(String name: nameHashmap.keySet()){
+                if(nameHashmap.get(name).contains(word)){
+                    i++;
+                }
+            }
+            if(i == (nameHashmap.size())){
+                result.add(word);
+            }
+        }
+		// should be receiving empty list because not every word is used by every person, very long, 50 messages
 		ArrayList<Integer> wordCountList = new ArrayList<Integer>();
 		for(String word: result){
 			wordCountList.add(wordCountHashmap.get(word));
@@ -110,8 +119,14 @@ public class A1_Q3 {
 	}
 
 	public static void main(String[] args) {
-		String[] posts = {"user1 doubledutch double double dutch applescotch","user2 applescotch dutch doubledutch doubledutch double","user3 applescotch not double dutch doubledutch"};
-		System.out.println(Discussion_Board(posts));
+		String[] posts = {"David  ali ali no no no no nabody never ali not dad", "Jennifer why ever not nabody not not ali dad", "Parham no not never ali nabody dad", "Shishir no ali not dad never know nabody", "Alvin why no not ali nabody dad ", "Alvin nabody never ali ali know why nabody dad", "David never no nabody", "Jennifer never never  nabody no"};
+		// String[] posts = String[10000];
+        // String test = "h ah a a a oso a hi my name is aj l a";
+        // for (int i = 0; i < 10000; i ++){
+            
+        // }
+        
+        System.out.println(Discussion_Board(posts));
 
 	}
 
